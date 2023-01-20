@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_app/widgets/task_tile.dart';
+import 'package:todoey_app/constants.dart';
+import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
+
+  Widget buildBottomSheet(BuildContext context) {
+    return const AddTaskScreen();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: const FloatingActionButton(
-          onPressed: null,
-          backgroundColor: Colors.amber,
-          child: Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: buildBottomSheet,
+            );
+          },
+          backgroundColor: kPrimaryColor,
+          child: const Icon(Icons.add),
         ),
-        backgroundColor: Colors.amber,
+        backgroundColor: kPrimaryColor,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,21 +34,21 @@ class TasksScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 19, 19, 19),
+                    backgroundColor: kSecondaryColor1,
                     radius: 30.0,
                     child: Icon(
-                      Icons.note,
-                      color: Colors.amber,
-                      size: 30.0,
+                      Icons.list,
+                      color: kPrimaryColor,
+                      size: 40.0,
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 20.0,
                   ),
                   Text(
                     'Todoey',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 19, 19, 19),
+                      color: kSecondaryColor1,
                       fontSize: 50.0,
                       fontWeight: FontWeight.w700,
                     ),
@@ -48,7 +60,7 @@ class TasksScreen extends StatelessWidget {
                     '12 Tasks',
                     style: TextStyle(
                       fontSize: 18.0,
-                      color: Color.fromARGB(255, 19, 19, 19),
+                      color: kSecondaryColor1,
                     ),
                   ),
                 ],
@@ -57,7 +69,7 @@ class TasksScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 19, 19, 19),
+                  color: kSecondaryColor2,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
@@ -65,63 +77,15 @@ class TasksScreen extends StatelessWidget {
                 ),
                 child: ListView(
                   padding: const EdgeInsets.all(30.0),
-                  children: const [
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Checkbox(value: false, onChanged: null),
-                      title: Text(
-                        'A Task',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                    ),
+                  children: [
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
+                    TaskTile(taskTitle: 'A Task', onChange: null),
                   ],
                 ),
               ),
