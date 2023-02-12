@@ -1,8 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:todoey_app/constants.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  late String taskName;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +43,12 @@ class AddTaskScreen extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            const TextField(
+            TextField(
+              onChanged: (value) {
+                taskName = value;
+              },
               cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter Task',
                 border: OutlineInputBorder(
                   borderSide: BorderSide(

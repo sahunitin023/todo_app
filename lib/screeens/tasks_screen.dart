@@ -1,11 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:todoey_app/widgets/task_tile.dart';
 import 'package:todoey_app/constants.dart';
 import 'add_task_screen.dart';
+import 'package:todoey_app/widgets/task_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
 
+class _TasksScreenState extends State<TasksScreen> {
   Widget buildBottomSheet(BuildContext context) {
     return const AddTaskScreen();
   }
@@ -75,19 +81,7 @@ class TasksScreen extends StatelessWidget {
                     topRight: Radius.circular(20.0),
                   ),
                 ),
-                child: ListView(
-                  padding: const EdgeInsets.all(30.0),
-                  children: [
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                    TaskTile(taskTitle: 'A Task', onChange: null),
-                  ],
-                ),
+                child: const TaskList(),
               ),
             )
           ],
