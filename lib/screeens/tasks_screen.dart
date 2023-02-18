@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todoey_app/constants.dart';
 import 'add_task_screen.dart';
 import 'package:todoey_app/widgets/task_list.dart';
+import 'package:todoey_app/widgets/task.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -12,8 +13,21 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: "1st Task"),
+    Task(name: "2nd Task"),
+    Task(name: "3rd Task"),
+  ];
+
   Widget buildBottomSheet(BuildContext context) {
-    return const AddTaskScreen();
+    return AddTaskScreen(
+      onAddCallBack: (newTaskTitle) {
+        setState(() {
+          tasks.add(Task(name: newTaskTitle.toString()));
+        });
+        Navigator.pop(context);
+      },
+    );
   }
 
   @override
@@ -38,8 +52,8 @@ class _TasksScreenState extends State<TasksScreen> {
               padding: const EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  CircleAvatar(
+                children: [
+                  const CircleAvatar(
                     backgroundColor: kSecondaryColor1,
                     radius: 30.0,
                     child: Icon(
@@ -48,10 +62,10 @@ class _TasksScreenState extends State<TasksScreen> {
                       size: 40.0,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
-                  Text(
+                  const Text(
                     'Todoey',
                     style: TextStyle(
                       color: kSecondaryColor1,
@@ -59,12 +73,12 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Text(
-                    '12 Tasks',
-                    style: TextStyle(
+                    '${tasks.length} Tasks',
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: kSecondaryColor1,
                     ),
@@ -81,7 +95,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20.0),
                   ),
                 ),
-                child: const TaskList(),
+                child: TaskList(tasks),
               ),
             )
           ],
