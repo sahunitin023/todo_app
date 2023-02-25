@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:todoey_app/constants.dart';
+import 'package:todoey_app/models/task_data.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  final Function(String) onAddCallBack;
-  const AddTaskScreen({Key? key, required this.onAddCallBack})
-      : super(key: key);
+  const AddTaskScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -98,7 +100,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           );
                           return;
                         } else {
-                          widget.onAddCallBack(taskName.toString());
+                          context.read<TaskData>().addTask(taskName);
+                          Navigator.pop(context);
+                          // widget.onAddCallBack(taskName.toString());
                         }
                       },
                       minWidth: 200.0,
